@@ -1,0 +1,131 @@
+PL_exercise 2:-
+
+NAME:-POONAM PISE
+ROLL NO :-200240520066
+
+Q1)Select from any table a number and determine 
+whether it is within a given range (for example, between 1 and 10).
+ans:-
+
+create table E2Q1
+(
+  num int (4),
+  ans char(10)
+  );
+  
+  delimiter ?
+  create procedure E2Q1()
+  begin
+       declare num int(4) default 5;
+       declare lv int(4) default 1;
+       declare uv int(4) default 10;
+       if(num>lv and num<uv) then
+       insert into E2Q1 values (num,'yes');
+       else
+       insert into E2Q1 values (num,'no');
+       end if;
+       end; ?
+delimiter ;
+
+call E2Q1();
+select * from E2Q1;
+
+======================================================================================================
+
+Q2)Select from any table three positive integers representing the sides of a triangle,
+ and determine whether they form a valid triangle.
+ Hint: In a triangle, the sum of any two sides must always be greater than the third side.
+
+ans:-
+ 
+ create table E2Q2
+(
+  a int (4),
+  b int(4),
+  c int(4),
+  ans char(10)
+  );
+  
+  delimiter //
+  create procedure E2Q2()
+  begin
+       declare a int(4) default 5;
+       declare b int(4) default 6;
+       declare c int(4) default 10;
+       if(a+b>c or b+c>a or c+a>b) then
+       insert into E2Q2 values (a,b,c,'yes');
+       else
+       insert into E2Q2 values (a,b,c,'no');
+       end if;
+       end; //
+delimiter ;
+
+call E2Q2();
+select * from E2Q2;
+======================================================================================================
+Q3)Check if a given a year is a leap year.
+ The condition is:- year should be (divisible by 4 and not divisible by 100) 
+ or (divisible by 4 and divisible by 400.).
+ The year should be Selected from some table.
+
+ans:-
+ 
+  create table E2Q3
+(
+  y int (4),
+  ans char(10)
+  );
+  
+  delimiter //
+  create procedure E2Q3()
+  begin
+       declare y int(4) default 2020;
+       declare c1 int (4);
+	   declare c2 int (4);
+	   declare c3 int (4);
+       set c1=mod(y,100);
+       set c2=mod(y,400);
+       set c3=mod(y,4);
+       if(c3=0 and not c2=0 or c3=0 and c2=0 ) then
+       insert into E2Q3 values (y,'leap');
+       else
+       insert into E2Q3 values (y,'not leap');
+       end if;
+       end; //
+delimiter ;
+
+call E2Q3();
+select * from E2Q3;
+======================================================================================================
+
+Q4)Write a program that Selects from any table two character strings.
+ Your program should then determine if one character string exists inside another character string.
+
+ans:-
+ 
+  create table E2Q4
+(
+  s1 char (10),
+  s2 char(20),
+  ans char(10)
+  );
+  
+  delimiter //
+  create procedure E2Q4()
+  begin
+       declare s1 char(10) default 'abc';
+       declare s2 char(20) default 'xyzabcstu';
+       declare a int(4);
+       set a=locate('abc','xyzabcstu');
+       if(a != 0) then
+       insert into E2Q4 values (s1,s2,'present');
+       else
+       insert into E2Q4 values (s1,s2,'absent');
+       end if;
+       end; //
+delimiter ;
+
+call E2Q4();
+
+select * from E2Q4;
+======================================================================================================
